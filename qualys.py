@@ -84,7 +84,6 @@ class QualysClient:
         full_url = f"{self.__protocol}://{self.__api_server_url}/{endpoint}/{object_category}"
         response = requests.get(url=full_url,
                                 params=params,
-                                verify=False,
                                 auth=(self.__user_name, self.__user_pass))
         return response
 
@@ -162,7 +161,6 @@ class QualysClient:
 
     def get_assets_by_tags(self):
         xml_filter = open("filter.xml", "r").read()
-        data = {"data": xml_filter}
         response = self.__make_post_request(xml_filter, self.asset_management_endpoint)
         return response
 
@@ -199,7 +197,8 @@ class QualysClient:
         return response, status
 
     def activate_aws_connector(self, connector_id, role_arn):
-        """Activate a Qualys AWS EC2 connector. The connector must be created already.
+        """
+        Activate a Qualys AWS EC2 connector. The connector must be created already.
 
         Args:
             connector_id (str): Name ID for the created connector.
@@ -225,7 +224,8 @@ class QualysClient:
         return response, status
 
     def delete_aws_connector(self, connector_name):
-        """Deletes a Qualys AWS EC2 connector by name.
+        """
+        Deletes a Qualys AWS EC2 connector by name.
 
         Args:
             connector_name (str): Name of the connector to be removed.
@@ -234,7 +234,6 @@ class QualysClient:
             response.Response: the response object of the request.
 
         """
-
         headers = {
             'Content-type': 'text/xml',
         }
@@ -263,7 +262,6 @@ class QualysClient:
             None: This function only makes a http request. It will return nothing.
 
         """
-
         request_headers = {
             "Content-Type": "application/json",
         }
@@ -272,4 +270,4 @@ class QualysClient:
                                                account_name, account_id)
 
         data = json.dumps(slack_message)
-        response = requests.post(url=self.__slack_webhook_url, headers=request_headers, data=data)
+        requests.post(url=self.__slack_webhook_url, headers=request_headers, data=data)

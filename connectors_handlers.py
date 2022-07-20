@@ -3,12 +3,24 @@ import xml.etree.ElementTree as ET
 
 
 class AWSConnectorHanlder:
+    """Class with methods for handling XML with Qualys AWS EC2 Connectors data and converting it to dict or objects."""
 
     def __init__(self):
+        """Construtor method of the class. There is no attributes for this method."""
         pass
 
     @staticmethod
     def xml_to_dict(connectors_as_xml):
+        """
+        Converts the XML request response, containing the connector's data, to dictionaries for better handling.
+
+        Args:
+            connectors_as_xml (requests.Response): Request response object containing the XML data about connector(s).
+
+        Returns:
+            all_connectors (list of dict): A list of dictionaries containing the connector's data, converted from XML.
+
+        """
         all_connectors = []
         tree = ET.ElementTree(ET.fromstring(connectors_as_xml))
         root = tree.getroot()
@@ -43,7 +55,17 @@ class AWSConnectorHanlder:
         return all_connectors
 
     @staticmethod
-    def dict_to_object(connectors_dicts: list):
+    def dict_to_object(connectors_dicts):
+        """
+        Converts the dictionaries containing the data of the connectors, to AWSConnector object.
+
+        Args:
+            connectors_dicts (list of dict): A list of dictionaries containing the connector's data, converted from XML.
+
+        Returns:
+            all_connectors (list of :obj:`AWSConnector`): A list of connector objects, converted from dictionaries.
+
+        """
         all_connectors = []
         for dictionary in connectors_dicts:
             connector = AWSConnector(id=dictionary["id"], name=dictionary["name"],
@@ -63,6 +85,18 @@ class AWSConnectorHanlder:
 
     @staticmethod
     def handle_connector_creation_xml(name):
+        """
+        This method reads the content of an XML file (template) and replace a 'name variable' with the real name of the
+         connector which will be created. The new content is returned and should be used as data in the post request
+         for the connector creation.
+
+        Args:
+            name (str): The name for the AWS EC2 Connector that will be created.
+
+        Returns:
+            create_connector_xml_string (str): String with XML data, used in the post request to create the connector.
+
+        """
         creation_xml_file_name = "xml/connectors/create_aws_connector.xml"
         creation_xml_file = open(creation_xml_file_name)
         create_connector_xml_data = str(creation_xml_file.read())
@@ -71,8 +105,18 @@ class AWSConnectorHanlder:
 
     @staticmethod
     def handle_connector_activation_xml(role_arn):
-        print(role_arn)
-        print(role_arn)
+        """
+        This method reads the content of an XML file (template) and replace 'variables' with the necessary values
+         necessary for activating the connector and setting the role ARN for the connector.
+         The new content is returned and should be used as data in the post request for the connector activation.
+
+        Args:
+            role_arn (str): The name for the AWS EC2 Connector that will be activated.
+
+        Returns:
+            activate_connector_xml_string (str): String with XML data, used in the post request to enable the connector.
+
+        """
         activation_xml_file_name = "xml/connectors/activate_aws_connector.xml"
         activation_xml_file = open(activation_xml_file_name)
         activate_connector_xml_data = str(activation_xml_file.read())
@@ -82,10 +126,20 @@ class AWSConnectorHanlder:
 
     @staticmethod
     def handle_connector_deletion_xml(name):
+        """
+        This method reads the content of an XML file (template) and replace a 'name variable' with the real name of the
+         connector which will be deleted. The new content is returned and should be used as data in the post request
+         for the connector deletion.
+
+        Args:
+            name (str): The name for the AWS EC2 Connector that will be deleted.
+
+        Returns:
+            delete_connector_xml_string (str): String with XML data, used in the post request to delete the connector.
+
+        """
         deletion_xml_file_name = "xml/connectors/delete_aws_connector.xml"
-        delete_connector_xml = open(deletion_xml_file_name)
-        tree = ET.ElementTree(ET.fromstring(delete_connector_xml.read()))
-        root = tree.getroot()
-        root.find(".//Criteria").text = name
-        tree.write(deletion_xml_file_name)
-        return open(deletion_xml_file_name).read()
+        deletion_xml_file = open(deletion_xml_file_name)
+        delete_connector_xml_data = str(deletion_xml_file.read())
+        delete_connector_xml_string = delete_connector_xml_data.replace("connector_name", name)
+        return delete_connector_xml_string

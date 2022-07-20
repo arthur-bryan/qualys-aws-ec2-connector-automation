@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <ServiceRequest>
 	<filters>
-		<Criteria field="name" operator="EQUALS">AWS-TEST-CONNECTOR</Criteria>
+		<Criteria field="name" operator="EQUALS">connector_name</Criteria>
 	</filters>
 </ServiceRequest>

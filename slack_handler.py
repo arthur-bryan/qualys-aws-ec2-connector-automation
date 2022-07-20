@@ -1,7 +1,8 @@
 import json
 
+
 def assemble_slack_message(connector_name, connector_id, account_name, account_id):
-    user = "<@U02744RQFTN>"
+    mention_user = "<@U02744RQFTN>"
     message_body = {
         "text": "Assets Without Qualys",
         "blocks":
@@ -52,11 +53,11 @@ def assemble_slack_message(connector_name, connector_id, account_name, account_i
                             "fields": [
                                 {
                                     "type": "mrkdwn",
-                                    "text": f"*Notify:*\n<@U02744RQFTN>"
+                                    "text": f"*Notify:*\n{mention_user}"
                                 },
                                 {
                                     "type": "mrkdwn",
-                                    "text": f"*Observation:*\nPlease, validate if connector was activated"
+                                    "text": "*Observation:*\nPlease, validate if connector was activated"
                                 }
                             ]
                         }
