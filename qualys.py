@@ -183,7 +183,6 @@ class QualysClient:
             if connector.name == name:
                 return connector
 
-
     def create_aws_connector(self, name):
         headers = {
             'Content-type': 'text/xml',
@@ -200,6 +199,17 @@ class QualysClient:
         return response, status
 
     def activate_aws_connector(self, connector_id, role_arn):
+        """Activate a Qualys AWS EC2 connector. The connector must be created already.
+
+        Args:
+            connector_id (str): Name ID for the created connector.
+            role_arn (str): The ARN for the created AWS role to allow the connector do the work.
+
+        Returns:
+            (response (response.Response), status (bool)) (tuple): Tuple containing the response object of the request
+              and a boolean value based on the status code (true if 200, false otherwise).
+
+        """
         headers = {
             'Content-type': 'text/xml',
         }
@@ -215,6 +225,16 @@ class QualysClient:
         return response, status
 
     def delete_aws_connector(self, connector_name):
+        """Deletes a Qualys AWS EC2 connector by name.
+
+        Args:
+            connector_name (str): Name of the connector to be removed.
+
+        Returns:
+            response.Response: the response object of the request.
+
+        """
+
         headers = {
             'Content-type': 'text/xml',
         }
@@ -229,6 +249,21 @@ class QualysClient:
         return response
 
     def send_to_slack(self, connector_name, connector_id, account_name, account_id):
+        """
+        Calls a function passing the name and ID for the created account and the related connector.
+        The function will format the Slack mesage contet, then, the result will be sent to the webhook url.
+
+        Args:
+            connector_name (str): Name of the created connector, used in Slack mesage formating.
+            connector_id (str):  ID of the created connector, used in Slack mesage formating.
+            account_name (str):  Name of the created AWS Account, used in Slack mesage formating.
+            account_id (str):  ID of the created AWS Account, used in Slack mesage formating.
+
+        Returns:
+            None: This function only makes a http request. It will return nothing.
+
+        """
+
         request_headers = {
             "Content-Type": "application/json",
         }

@@ -1,4 +1,28 @@
 class AWSConnector:
+    """
+    Class that represents the AWS EC2 Connector on Qualys.
+
+    Attributes:
+        id (str): The AWS EC2 connector ID on Qualys.
+        name (str):The name for AWS EC2 connector ID on Qualys.
+        aws_account_id (str): The AWS Account ID which the connector is related.
+        last_sync (str): The datetime of the last sync.
+        last_error (str): The description of the last error.
+        connector_state (str): The current state of the connector.
+        type (str): The cloud provider. In this class, with always be 'AWS'.
+        default_tags (str): json string containing the tags set at the connector (if there is some).
+        disabled (str): Boolean value as string. Should be 'true' or 'false' depending on the state of the connector.
+        is_gov_cloud_configured (str): Boolean value as str. 'true' if the account is governamental, 'false' otherwise.
+        is_china_configured (str): Boolean value as str. 'true' if the account is chinese, 'false' otherwise.
+        is_deleted (str): Boolean value as string. 'true' if the account was deleted, 'false' otherwise.
+        arn (str): The role arn configured on the connector.
+        external_id (str): The external ID of the connector, used when setting the Role on AWS.
+        qualys_aws_accountid (str): ID for the AWS Account, but inside Qualys view.
+        auth_record (str): str(authrecord)
+        all_regions (str): Boolean as str. 'true' if the connector was configured to scan all regions, 'false' if not.
+
+    """
+
     def __init__(self, id, name, awsaccountid, lastsync, lasterror, connectorstate, type, defaulttags, disabled,
                  isgovcloudconfigured, ischinaconfigured, isdeleted, arn, externalid, qualysawsaccountid, authrecord,
                  allregions):
@@ -21,12 +45,25 @@ class AWSConnector:
         self.all_regions = str(allregions)
 
     def __repr__(self):
+        """Real representation of the object.
+
+        Returns:
+            (str): The object representation, eg: AWSConnector(id, name, aws_account_id, last_sync, last_error...).
+
+        """
         return f"{self.__class__.__name__}({self.id}, {self.name}, {self.aws_account_id}, {self.last_sync}," \
                f" {self.last_error}, {self.connector_state}, {self.type}, {self.default_tags}, {self.disabled}," \
                f"{self.is_gov_cloud_configured}, {self.is_china_configured}, {self.is_deleted}, {self.arn}," \
                f"{self.external_id}, {self.aws_account_id}, {self.auth_record}, {self.all_regions})"
 
     def __str__(self):
+        """Human-readable string of the object. When using print(<connector_object>), the output will look like that.
+
+        Returns:
+            (str): A human-readable string, that shows each of the connector attributes better formated.
+
+        """
+
         colum_width = 30
         fill_char = " "
         ljust = lambda text: text.ljust(colum_width, fill_char)
