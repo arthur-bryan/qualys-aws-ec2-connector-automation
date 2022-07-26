@@ -1,7 +1,7 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/37b7c1b20a32415ba522a79505bdd9bd)](https://www.codacy.com/gh/arthur-bryan/qualys-aws-ec2-connector-automation/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=arthur-bryan/qualys-aws-ec2-connector-automation&amp;utm_campaign=Badge_Grade)
 [![Open Source](https://img.shields.io/badge/Open%20Source-05C230?logo=Github&logoColor=white&link=https://github.com/arthur-bryan/qualys-aws-ec2-connector-automation)](https://github.com/arthur-bryan/qualys-aws-ec2-connector-automation)
 [![Status Badge](https://img.shields.io/badge/status-development-05C230)](https://github.com/arthur-bryan/qualys-aws-ec2-connector-automation/tree/dev)
-![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/arthur-bryan/qualys-aws-ec2-connector-automation?color=05C230)
+![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/arthur-bryan/qualys-aws-ec2-connector-automation?color=05C230&label=release)
 [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/arthur-bryan/qualys-aws-ec2-connector-automation?color=05C230)](https://github.com/arthur-bryan/qualys-aws-ec2-connector-automation/tags)
 [![Python Badge](https://img.shields.io/badge/-Python-05C230?logo=Python&logoColor=white&link=https://www.python.org/)](https://github.com/arthur-bryan?tab=repositories&q=&type=&language=python)
 ![GitHub repo size](https://img.shields.io/github/repo-size/arthur-bryan/qualys-aws-ec2-connector-automation?color=05C230)
