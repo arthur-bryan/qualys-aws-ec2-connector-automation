@@ -2,8 +2,6 @@ from qualys import QualysClient
 from handlers.aws import AWSConnectorHanlder
 from notification.slack import SlackNotifier
 from role_assignment import setup_iam
-from botocore.exceptions import ClientError
-import json
 
 slack_notifier = SlackNotifier()
 aws_connector_handler = AWSConnectorHanlder()

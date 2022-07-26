@@ -50,7 +50,7 @@ class SlackNotifier:
                         "type": "header",
                         "text": {
                             "type": "plain_text",
-                            "text": f":qualys-logo: Qualys AWS EC2 Connector creation"
+                            "text": ":qualys-logo: Qualys AWS EC2 Connector creation"
                         }
                     }
                 ],
@@ -78,7 +78,7 @@ class SlackNotifier:
                                     "fields": [
                                         {
                                             "type": "mrkdwn",
-                                            "text": f"*Error message:*"
+                                            "text": "*Error message:*"
                                         },
                                         {
                                             "type": "mrkdwn",
@@ -99,7 +99,7 @@ class SlackNotifier:
                             "type": "header",
                             "text": {
                                 "type": "plain_text",
-                                "text": f":qualys-logo: Qualys AWS EC2 Connector creation"
+                                "text": ":qualys-logo: Qualys AWS EC2 Connector creation"
                             }
                         }
                     ],

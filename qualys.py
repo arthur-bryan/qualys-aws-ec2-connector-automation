@@ -1,7 +1,6 @@
 from handlers.aws import AWSConnectorHanlder
 from botocore.vendored import requests
 import base64
-import json
 import os
 
 

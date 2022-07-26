@@ -1,6 +1,6 @@
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/37b7c1b20a32415ba522a79505bdd9bd)](https://www.codacy.com/gh/arthur-bryan/qualys-aws-ec2-connector-automation/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=arthur-bryan/qualys-aws-ec2-connector-automation&amp;utm_campaign=Badge_Grade)
-[![Open Source](https://img.shields.io/badge/Open%20Source-05C230?logo=Github&logoColor=white&link=https://github.com/arthur-bryan/pisco)](https://github.com/arthur-bryan/pisco)
-[![Status Badge](https://img.shields.io/badge/status-development-05C230)](https://github.com/arthur-bryan/qualys-aws-ec2-connector-automation)
+[![Open Source](https://img.shields.io/badge/Open%20Source-05C230?logo=Github&logoColor=white&link=https://github.com/arthur-bryan/qualys-aws-ec2-connector-automation)](https://github.com/arthur-bryan/qualys-aws-ec2-connector-automation)
+[![Status Badge](https://img.shields.io/badge/status-development-05C230)](https://github.com/arthur-bryan/qualys-aws-ec2-connector-automation/tree/dev)
 ![GitHub release (latest SemVer)](https://img.shields.io/github/v/release/arthur-bryan/qualys-aws-ec2-connector-automation?color=05C230)
 [![GitHub tag (latest by date)](https://img.shields.io/github/v/tag/arthur-bryan/qualys-aws-ec2-connector-automation?color=05C230)](https://github.com/arthur-bryan/qualys-aws-ec2-connector-automation/tags)
 [![Python Badge](https://img.shields.io/badge/-Python-05C230?logo=Python&logoColor=white&link=https://www.python.org/)](https://github.com/arthur-bryan?tab=repositories&q=&type=&language=python)
@@ -49,6 +49,7 @@ zip -r qualys-aws-ec2-connector-automation.zip qualys-aws-ec2-connector-automati
 ## :computer: Usage
 1 - Create an account using Control Tower.
 - The account must have the following Rule and Policy to allow the Lambda to work:
+
   - Role:
     ```json
     {
@@ -66,31 +67,30 @@ zip -r qualys-aws-ec2-connector-automation.zip qualys-aws-ec2-connector-automati
     }
     ```
   - Policy:
-    - 
-    ```json
-    {
-    "Version": "2012-10-17",
-    "Statement": [
-        {
-            "Sid": "VisualEditor0",
-            "Effect": "Allow",
-            "Action": [
-                "iam:CreatePolicy",
-                "iam:PassRole",
-                "iam:DetachRolePolicy",
-                "iam:AttachGroupPolicy",
-                "iam:CreateRole",
-                "iam:AttachRolePolicy",
-                "iam:UpdateRole",
-                "iam:DetachGroupPolicy",
-                "iam:PutRolePolicy",
-                "iam:PutGroupPolicy"
-            ],
-            "Resource": "*"
-        }
-      ]
-    }
-    ```
+      ```json
+      {
+      "Version": "2012-10-17",
+      "Statement": [
+          {
+              "Sid": "VisualEditor0",
+              "Effect": "Allow",
+              "Action": [
+                  "iam:CreatePolicy",
+                  "iam:PassRole",
+                  "iam:DetachRolePolicy",
+                  "iam:AttachGroupPolicy",
+                  "iam:CreateRole",
+                  "iam:AttachRolePolicy",
+                  "iam:UpdateRole",
+                  "iam:DetachGroupPolicy",
+                  "iam:PutRolePolicy",
+                  "iam:PutGroupPolicy"
+              ],
+              "Resource": "*"
+          }
+        ]
+      }
+      ```
 
 2 - The Control Tower lifecycle event for the created accout will trigger the Lambda and you will receive a notification on Slack when it's done.
 
