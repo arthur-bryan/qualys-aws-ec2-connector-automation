@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<ServiceRequest>
+	<data>
+		<AwsAssetDataConnector>
+			<name>connector_name</name>
+			<allRegions>true</allRegions>
+			<externalId>1658443190235</externalId> 
+		</AwsAssetDataConnector>
+	</data>
+</ServiceRequest>
