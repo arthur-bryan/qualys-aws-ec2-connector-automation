@@ -1,9 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
 <ServiceRequest>
-	<data>
-		<AwsAssetDataConnector>
-			<arn>role_arn</arn>
-			<disabled>disabled_state</disabled>
-		</AwsAssetDataConnector>
-	</data>
+   <data>
+      <AwsAssetDataConnector>
+         <arn>role_arn</arn>
+         <disabled>disabled_state</disabled>
+         <useForCloudView>true</useForCloudView>
+      </AwsAssetDataConnector>
+   </data>
 </ServiceRequest>

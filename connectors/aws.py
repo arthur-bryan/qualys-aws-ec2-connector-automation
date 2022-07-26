@@ -4,7 +4,7 @@ class AWSConnector:
 
     Attributes:
         id (str): The AWS EC2 connector ID on Qualys.
-        name (str): The name for AWS EC2 connector ID on Qualys.
+        name (str):The name for AWS EC2 connector ID on Qualys.
         aws_account_id (str): The AWS Account ID which the connector is related.
         last_sync (str): The datetime of the last sync.
         last_error (str): The description of the last error.
@@ -26,29 +26,6 @@ class AWSConnector:
     def __init__(self, id, name, awsaccountid, lastsync, lasterror, connectorstate, type, defaulttags, disabled,
                  isgovcloudconfigured, ischinaconfigured, isdeleted, arn, externalid, qualysawsaccountid, authrecord,
                  allregions):
-        """
-        The constructor method of the class. The arguments are the attributes.
-        
-        Args:
-            id (str): The AWS EC2 connector ID on Qualys.
-            name (str):  The name for AWS EC2 connector ID on Qualys.
-            awsaccountid (str): The AWS Account ID which the connector is related.
-            lastsync (str): The datetime of the last sync.
-            lasterror (str): The description of the last error.
-            connectorstate (str): The current state of the connector.
-            type (str): The cloud provider. In this class, with always be 'AWS'.
-            defaulttags (str): json string containing the tags set at the connector (if there is some).
-            disabled (str): Boolean value as str. Should be 'true' or 'false' depending on the state of the connector.
-            isgovcloudconfigured (str): Boolean value as str. 'true' if the account is governamental, 'false' otherwise.
-            ischinaconfigured (str): Boolean value as str. 'true' if the account is chinese, 'false' otherwise.
-            isdeleted (str): Boolean value as string. 'true' if the account was deleted, 'false' otherwise.
-            arn (str): The role arn configured on the connector.
-            externalid (str): The external ID of the connector, used when setting the Role on AWS.
-            qualysawsaccountid (str): ID for the AWS Account, but inside Qualys view.
-            authrecord (str): str(authrecord)
-            allregions (str): Boolean as str. true if the connector was configured to scan all regions, 'false' if not.
-
-        """
         self.id = str(id)
         self.name = str(name)
         self.aws_account_id = str(awsaccountid)
@@ -68,8 +45,7 @@ class AWSConnector:
         self.all_regions = str(allregions)
 
     def __repr__(self):
-        """
-        Real representation of the object.
+        """Real representation of the object.
 
         Returns:
             (str): The object representation, eg: AWSConnector(id, name, aws_account_id, last_sync, last_error...).
@@ -81,13 +57,13 @@ class AWSConnector:
                f"{self.external_id}, {self.aws_account_id}, {self.auth_record}, {self.all_regions})"
 
     def __str__(self):
-        """
-        Human-readable string of the object. When using print(<connector_object>), the output will look like that.
+        """Human-readable string of the object. When using print(<connector_object>), the output will look like that.
 
         Returns:
             (str): A human-readable string, that shows each of the connector attributes better formated.
 
         """
+
         colum_width = 30
         fill_char = " "
         ljust = lambda text: text.ljust(colum_width, fill_char)

@@ -3,9 +3,8 @@
 	<data>
 		<AwsAssetDataConnector>
 			<name>connector_name</name>
-			<isGovCloudConfigured>false</isGovCloudConfigured>
 			<allRegions>true</allRegions>
-			<disabled>true</disabled>
+			<externalId>1658443190235</externalId> 
 		</AwsAssetDataConnector>
 	</data>
 </ServiceRequest>
