@@ -1,4 +1,4 @@
-from botocore.vendored import requests
+import requests
 import os
 import json
 
@@ -11,7 +11,7 @@ class SlackNotifier:
     def send_message(self, **kwargs):
         """
         Calls a function passing the name and ID for the created account and the related connector.
-        The function will format the Slack mesage contet, then, the result will be sent to the Slack webhook url.
+        The function will format the Slack message content, then, the result will be sent to the Slack webhook url.
 
         Args:
             kwargs (dict): Arguments used to format the message that will be sent to Slack.

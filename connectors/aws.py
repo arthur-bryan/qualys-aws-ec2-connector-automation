@@ -77,7 +77,7 @@ class AWSConnector:
                ljust("Default tags:") + ljust(self.default_tags) + "\n" + \
                ljust("Disabled:") + ljust(self.disabled) + "\n" + \
                ljust("Is Gov Cloud configured:") + ljust(self.is_gov_cloud_configured) + "\n" + \
-               ljust("Is Chine configured:") + ljust(self.is_china_configured) + "\n" + \
+               ljust("Is China configured:") + ljust(self.is_china_configured) + "\n" + \
                ljust("Is deleted:") + ljust(self.is_deleted) + "\n" + \
                ljust("ARN:") + ljust(self.arn) + "\n" + \
                ljust("External ID:") + ljust(self.external_id) + "\n" + \

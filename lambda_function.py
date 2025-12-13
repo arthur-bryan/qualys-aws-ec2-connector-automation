@@ -1,10 +1,9 @@
 from qualys import QualysClient
-from handlers.aws import AWSConnectorHanlder
+from handlers.aws import AWSConnectorHandler
 from notification.slack import SlackNotifier
 from role_assignment import setup_iam
 
 slack_notifier = SlackNotifier()
-aws_connector_handler = AWSConnectorHanlder()
 qualys_client = QualysClient(api_server_url="qualysapi.qg3.apps.qualys.com", notifier=slack_notifier)
 
 
@@ -26,8 +25,8 @@ def lambda_handler(event, context):
             response, connector_creation_status = qualys_client.create_aws_connector(account_name)
 
             if connector_creation_status:
-                connector_as_dict = AWSConnectorHanlder.xml_to_dict(response.text)
-                connector = AWSConnectorHanlder.dict_to_object(connector_as_dict)
+                connector_as_dict = AWSConnectorHandler.xml_to_dict(response.text)
+                connector = AWSConnectorHandler.dict_to_object(connector_as_dict)
                 if len(connector) < 1:
                     qualys_client.delete_aws_connector(account_name)
                     lambda_handler(event, context)

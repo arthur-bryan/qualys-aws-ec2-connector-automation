@@ -54,10 +54,9 @@ def setup_iam(qualys_base_account_id, external_id, account_id):
         if error.response['Error']['Code'] == 'EntityAlreadyExists':
             print('Role already exists!')
             role_arn = f"arn:aws:iam::{account_id}:role/{role_name}"
-            pass
         else:
             print(f'Unexpected error occurred! Role could not be created. {error}')
-            return
+            return None
     else:
         role_arn = role_res['Role']['Arn']
 
@@ -90,7 +89,7 @@ def setup_iam(qualys_base_account_id, external_id, account_id):
             policy_arn = f'arn:aws:iam::{account_id}:policy/{policy_name}'
         else:
             print('Unexpected error occurred', error.response['Error']['Code'])
-            return 'Role could not be created...'
+            return None
 
     try:
 

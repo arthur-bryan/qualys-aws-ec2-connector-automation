@@ -1,5 +1,5 @@
-from handlers.aws import AWSConnectorHanlder
-from botocore.vendored import requests
+from handlers.aws import AWSConnectorHandler
+import requests
 import base64
 import os
 
@@ -56,7 +56,7 @@ class QualysClient:
         Read-only property. Returns the Notifier object, used to send notifications.
 
         Returns:
-            self.__base_account_id (str): Qualys Base Account ID
+            self.__notifier (SlackNotifier): Notifier object
         """
         return self.__notifier
 
@@ -125,8 +125,8 @@ class QualysClient:
              especified name was found.
         """
         all_connectors = self.get_aws_connectors().text
-        connectors_as_dict = AWSConnectorHanlder.xml_to_dict(all_connectors)
-        connectors_as_object = AWSConnectorHanlder.dict_to_object(connectors_as_dict)
+        connectors_as_dict = AWSConnectorHandler.xml_to_dict(all_connectors)
+        connectors_as_object = AWSConnectorHandler.dict_to_object(connectors_as_dict)
         for connector in connectors_as_object:
             if connector.name == connector_name:
                 return connector
@@ -150,7 +150,7 @@ class QualysClient:
 
         api_endpoint = "qps/rest/2.0/create/am"
         object_category = "awsassetdataconnector"
-        connector_creation_xml_data = AWSConnectorHanlder.handle_connector_creation_xml(connector_name)
+        connector_creation_xml_data = AWSConnectorHandler.handle_connector_creation_xml(connector_name)
         response = self.__make_basic_post_request(endpoint=api_endpoint,
                                                   object_category=object_category,
                                                   headers=headers,
@@ -177,7 +177,7 @@ class QualysClient:
 
         api_endpoint = "qps/rest/2.0/update/am"
         object_category = "awsassetdataconnector"
-        activation_xml = AWSConnectorHanlder.handle_connector_activation_xml(role_arn)
+        activation_xml = AWSConnectorHandler.handle_connector_activation_xml(role_arn)
         response = self.__make_basic_post_request(endpoint=api_endpoint,
                                                   object_category=f"{object_category}/{connector_id}",
                                                   headers=headers,
@@ -200,7 +200,7 @@ class QualysClient:
             'Content-type': 'text/xml',
         }
 
-        deletion_xml = AWSConnectorHanlder.handle_connector_deletion_xml(connector_name)
+        deletion_xml = AWSConnectorHandler.handle_connector_deletion_xml(connector_name)
         api_endpoint = "qps/rest/2.0/delete/am"
         object_category = "awsassetdataconnector"
         response = self.__make_basic_post_request(endpoint=api_endpoint,

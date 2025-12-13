@@ -2,10 +2,7 @@ from connectors.aws import AWSConnector
 import xml.etree.ElementTree as ET
 
 
-class AWSConnectorHanlder:
-
-    def __init__(self):
-        pass
+class AWSConnectorHandler:
 
     @staticmethod
     def xml_to_dict(connectors_as_xml):
@@ -64,16 +61,16 @@ class AWSConnectorHanlder:
     @staticmethod
     def handle_connector_creation_xml(connector_name):
         creation_xml_file_name = "xml/connectors/create_aws_connector.xml"
-        creation_xml_file = open(creation_xml_file_name)
-        create_connector_xml_data = str(creation_xml_file.read())
+        with open(creation_xml_file_name) as creation_xml_file:
+            create_connector_xml_data = creation_xml_file.read()
         create_connector_xml_string = create_connector_xml_data.replace("connector_name", connector_name)
         return create_connector_xml_string
 
     @staticmethod
     def handle_connector_activation_xml(role_arn):
         activation_xml_file_name = "xml/connectors/activate_aws_connector.xml"
-        activation_xml_file = open(activation_xml_file_name)
-        activate_connector_xml_data = str(activation_xml_file.read())
+        with open(activation_xml_file_name) as activation_xml_file:
+            activate_connector_xml_data = activation_xml_file.read()
         activate_connector_xml_string = activate_connector_xml_data.replace("disabled_state", "false")
         activate_connector_xml_string = activate_connector_xml_string.replace("role_arn", role_arn)
         return activate_connector_xml_string
@@ -81,7 +78,7 @@ class AWSConnectorHanlder:
     @staticmethod
     def handle_connector_deletion_xml(connector_name):
         deletion_xml_file_name = "xml/connectors/delete_aws_connector.xml"
-        deletion_xml_file = open(deletion_xml_file_name)
-        deletion_connector_xml_data = str(deletion_xml_file.read())
+        with open(deletion_xml_file_name) as deletion_xml_file:
+            deletion_connector_xml_data = deletion_xml_file.read()
         deletion_connector_xml_string = deletion_connector_xml_data.replace("connector_name", connector_name)
         return deletion_connector_xml_string
